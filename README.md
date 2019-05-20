@@ -1,2 +1,2 @@
 # go-pi-monitor
-Raspiberry Pi monitor with Golang.
+Raspberry Pi monitor with Golang.

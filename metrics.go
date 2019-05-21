@@ -15,8 +15,6 @@ type Metrics struct {
 	temperatures []host.TemperatureStat
 	users        []host.UserStat
 
-	counts          int
-	logicCounts     int
 	totalPercents   []float64
 	percents        []float64
 	infoStats       []cpu.InfoStat
@@ -38,27 +36,25 @@ type Metrics struct {
 
 func getMetrics() gin.H {
 	metrics := &Metrics{}
-	//运行时间
+	//设备
 	metrics.host, _ = host.Info()
 	metrics.temperatures, _ = host.SensorsTemperatures()
 	metrics.users, _ = host.Users()
-	//CPU使用率
-	metrics.counts, _ = cpu.Counts(false)
-	metrics.logicCounts, _ = cpu.Counts(true)
+	//CPU
 	metrics.infoStats, _ = cpu.Info()
 	metrics.totalTimesStats, _ = cpu.Times(false)
 	metrics.timesStats, _ = cpu.Times(true)
 	metrics.totalPercents, _ = cpu.Percent(500*time.Millisecond, false)
 	metrics.percents, _ = cpu.Percent(500*time.Millisecond, true)
-	//内存使用率
+	//内存
 	metrics.swapMemStat, _ = mem.SwapMemory()
 	metrics.virtualMemStat, _ = mem.VirtualMemory()
-	//网络使用率
+	//网络
 	metrics.connectionStats, _ = net.Connections("all")
 	metrics.interfaces, _ = net.Interfaces()
 	metrics.netIO, _ = net.IOCounters(false)
 	metrics.netIOPerNic, _ = net.IOCounters(true)
-	//磁盘使用率
+	//磁盘
 	metrics.parts, _ = disk.Partitions(true)
 	metrics.diskUsage, _ = disk.Usage("/")
 	metrics.diskIO, _ = disk.IOCounters()
@@ -67,8 +63,6 @@ func getMetrics() gin.H {
 		"host":              metrics.host,
 		"temperatures":      metrics.temperatures,
 		"users":             metrics.users,
-		"cpu.counts":        metrics.counts,
-		"cpu.logicCounts":   metrics.logicCounts,
 		"cpu.info":          metrics.infoStats,
 		"cpu.percent":       metrics.totalPercents,
 		"cpu.percentPerCpu": metrics.percents,

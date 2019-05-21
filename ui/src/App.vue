@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <a-locale-provider :locale="locale">
-
+      <a-row :gutter="24">
+        <a-col :span="6">
+          <device :loading="loading" :host="metrics.host"/>
+        </a-col>
+        <a-col :span="6">
+          <cpu :loading="loading" :info="metrics['cpu.info']" :percent="metrics['cpu.percent']"/>
+        </a-col>
+      </a-row>
     </a-locale-provider>
   </div>
 </template>
@@ -21,12 +28,12 @@ export default {
   data() {
     return {
       locale: zhCN,
+      loading: false,
+      isFirst: true,
       metrics: {
         host: {},
         temperatures: [],
         users: [],
-        "cpu.counts": undefined,
-        "cpu.logicCounts": undefined,
         "cpu.info": [],
         "cpu.percent": [],
         "cpu.percentPerCpu": [],
@@ -46,23 +53,42 @@ export default {
   },
   created() {
     this.fetchInfo();
+    this.schedule();
   },
   methods: {
     fetchInfo() {
+      if (this.isFirst) {
+        this.loading = true;
+      }
       axios.get('/info').then(res => {
         this.metrics = res.data;
+        if (this.isFirst) {
+          this.loading = false;
+          this.isFirst = false;
+        }
       }).catch(() => {
         this.$message.error('获取监控信息失败');
+        if (this.isFirst) {
+          this.loading = false;
+          this.isFirst = false;
+        }
       });
+    },
+    schedule() {
+      setInterval(this.fetchInfo, 5000);
     }
   }
 }
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 24px 64px;
+}
+.monitor-card {
+  height: 240px;
+}
 </style>

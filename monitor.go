@@ -31,5 +31,5 @@ func Run() {
 }
 
 func monitorInfoHandler(c *gin.Context) {
-	//TODO 获取监控数据
+	c.JSON(http.StatusOK, getMetrics())
 }

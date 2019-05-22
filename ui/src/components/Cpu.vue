@@ -1,6 +1,6 @@
 <template>
   <a-card :loading="loading" class="monitor-card">
-    <a-progress type="dashboard" :percent="cpuPercent"></a-progress>
+    <a-progress type="dashboard" :percent="cpuPercent" :status="cpuStatus"></a-progress>
     <a-card-meta title="CPU">
       <template slot="description">
         <div><b>{{cpuInfo.modelName}}</b></div>
@@ -33,13 +33,14 @@ export default {
     },
     cpuPercent() {
       return Math.round(this.percent[0]) || 0;
+    },
+    cpuStatus() {
+      return this.$utils.percentStatus(this.cpuPercent);
     }
   }
 }
 </script>
 
 <style scoped>
-.ml-2 {
-  margin-left: 16px;
-}
+
 </style>

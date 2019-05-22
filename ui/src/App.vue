@@ -2,11 +2,20 @@
   <div id="app">
     <a-locale-provider :locale="locale">
       <a-row :gutter="24">
-        <a-col :span="6">
+        <a-col :span="8" class="mb-2">
           <device :loading="loading" :host="metrics.host"/>
         </a-col>
-        <a-col :span="6">
+        <a-col :span="8" class="mb-2">
           <cpu :loading="loading" :info="metrics['cpu.info']" :percent="metrics['cpu.percent']"/>
+        </a-col>
+        <a-col :span="8" class="mb-2">
+          <mem :loading="loading" :swapMem="metrics['mem.swap']" :virtualMem="metrics['mem.virtual']"/>
+        </a-col>
+        <a-col :span="8" class="mb-2">
+          <net :loading="loading" :connections="metrics['net.connections']" :interfaces="metrics['net.interfaces']" :io="metrics['net.io']"/>
+        </a-col>
+        <a-col :span="16" class="mb-2">
+          <disk :loading="loading" :parts="metrics['disk.parts']" :usage="metrics['disk.usage']"></disk>
         </a-col>
       </a-row>
     </a-locale-provider>
@@ -45,7 +54,7 @@ export default {
         "net.interfaces": [],
         "net.io": [],
         "net.ioPerNic": [],
-        "disk.parts": [],
+        "disk.parts": [{device: 'C:', fstype: 'NTFS'}],
         "disk.usage": {},
         "disk.io": {}
       }
@@ -86,9 +95,27 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 24px 64px;
+  padding: 24px 256px;
 }
 .monitor-card {
-  height: 240px;
+  height: 256px;
+}
+.ml-1 {
+  margin-left: 8px;
+}
+.ml-2 {
+  margin-left: 16px;
+}
+.ml-3 {
+  margin-left: 24px;
+}
+.mb-1 {
+  margin-bottom: 8px;
+}
+.mb-2 {
+  margin-bottom: 16px;
+}
+.mr-2 {
+  margin-right: 16px;
 }
 </style>

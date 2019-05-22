@@ -3,7 +3,13 @@
     <a-locale-provider :locale="locale">
       <a-row :gutter="24">
         <a-col :span="8" class="mb-2">
-          <device :loading="loading" :host="metrics.host"/>
+          <div class="mb-2">
+            <device :loading="loading" :host="metrics.host"/>
+          </div>
+          <div class="mb-2">
+            <net :loading="loading" :connections="metrics['net.connections']" :interfaces="metrics['net.interfaces']" :io="metrics['net.io']"/>
+          </div>
+          <user :loading="loading" :users="metrics.users"/>
         </a-col>
         <a-col :span="8" class="mb-2">
           <cpu :loading="loading" :info="metrics['cpu.info']" :percent="metrics['cpu.percent']"/>
@@ -11,14 +17,8 @@
         <a-col :span="8" class="mb-2">
           <mem :loading="loading" :swapMem="metrics['mem.swap']" :virtualMem="metrics['mem.virtual']"/>
         </a-col>
-        <a-col :span="8" class="mb-2">
-          <net :loading="loading" :connections="metrics['net.connections']" :interfaces="metrics['net.interfaces']" :io="metrics['net.io']"/>
-        </a-col>
         <a-col :span="16" class="mb-2">
           <disk :loading="loading" :parts="metrics['disk.parts']" :usage="metrics['disk.usage']"></disk>
-        </a-col>
-        <a-col :span="8">
-          <user :loading="loading" :users="metrics.users"/>
         </a-col>
       </a-row>
     </a-locale-provider>

@@ -10,7 +10,7 @@
         <span v-for="part in diskParts" :key="part.device" class="part-item mb-1">
           <b>
             <a-icon type="hdd"/> {{part.fstype}} 
-            <span class="ml-2">{{part.device}} / {{part.mountpoint}}</span>
+            <span class="ml-2">{{part.device}} --- {{part.mountpoint}}</span>
           </b>
         </span>
       </template>

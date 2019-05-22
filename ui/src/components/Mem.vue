@@ -39,7 +39,7 @@ export default {
       return Math.round(this.swapMem.usedPercent * 100) || 0;
     },
     virtualPercent() {
-      return this.virtualMem.usedPercent || 0;
+      return Math.round(this.virtualMem.usedPercent) || 0;
     },
     swapStatus() {
       return this.$utils.percentStatus(this.swapPercent);

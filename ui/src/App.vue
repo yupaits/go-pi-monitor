@@ -17,6 +17,9 @@
         <a-col :span="16" class="mb-2">
           <disk :loading="loading" :parts="metrics['disk.parts']" :usage="metrics['disk.usage']"></disk>
         </a-col>
+        <a-col :span="8">
+          <user :loading="loading" :users="metrics.users"/>
+        </a-col>
       </a-row>
     </a-locale-provider>
   </div>
@@ -30,9 +33,10 @@ import Cpu from './components/Cpu'
 import Disk from './components/Disk'
 import Mem from './components/Mem'
 import Net from './components/Net'
+import User from './components/User'
 export default {
   components: {
-    Device, Cpu, Disk, Mem, Net
+    Device, Cpu, Disk, Mem, Net, User
   },
   data() {
     return {
@@ -54,7 +58,7 @@ export default {
         "net.interfaces": [],
         "net.io": [],
         "net.ioPerNic": [],
-        "disk.parts": [{device: 'C:', fstype: 'NTFS'}],
+        "disk.parts": [],
         "disk.usage": {},
         "disk.io": {}
       }
@@ -99,6 +103,9 @@ export default {
 }
 .monitor-card {
   height: 256px;
+}
+.pull-right {
+  float: right;
 }
 .ml-1 {
   margin-left: 8px;

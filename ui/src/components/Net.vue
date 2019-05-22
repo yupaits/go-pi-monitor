@@ -3,7 +3,7 @@
     <a-card-meta :title="interfaceName">
       <template slot="description">
         <div class="net-item"><b>状态：{{status}}</b></div>
-        <div class="net-item" v-for="(addr, index) in addrs" :key="addr"><b>地址{{index}}：{{addr}}</b></div>
+        <div class="net-item" v-for="(addr, index) in addrs" :key="addr"><b>地址{{index + 1}}：{{addr}}</b></div>
         <div class="net-item"><b>连接数：{{connCounts}}</b></div>
         <div class="net-item"><b>数据包：{{`已发送 ${netIO.packetsSent} 个 已接收 ${netIO.packetsRecv} 个`}}</b></div>
         <div class="net-item"><b>数据：{{`已发送 ${netIO.bytesSent} 字节 已接收 ${netIO.bytesRecv} 字节`}}</b></div>

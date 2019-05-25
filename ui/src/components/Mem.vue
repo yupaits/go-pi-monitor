@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     swapPercent() {
-      return Math.round(this.swapMem.usedPercent * 100) || 0;
+      return Math.round(this.swapMem.usedPercent) || 0;
     },
     virtualPercent() {
       return Math.round(this.virtualMem.usedPercent) || 0;

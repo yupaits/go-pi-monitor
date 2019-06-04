@@ -1,5 +1,8 @@
 language: go
 
+services:
+  - docker
+
 go:
   - "1.11.x"
   - "1.12.x"
@@ -9,3 +12,10 @@ env:
 
 install:
   - go build app/main.go
+  - docker build -pull -t "yupaits/go-pi-monitor" .
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: master

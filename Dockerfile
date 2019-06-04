@@ -6,7 +6,7 @@ ADD main /app/
 ADD ui/dist /app/ui/dist
 ADD config.toml /app/
 
-RUN chmod +x /app/main
+#RUN chmod +x /app/main
 
 EXPOSE 80
 ENTRYPOINT ["/app/main"]

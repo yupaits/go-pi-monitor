@@ -19,7 +19,7 @@ install:
   - npm install
   - npm run build
   - cd ..
-  - docker build --pull -t "yupaits/go-pi-monitor" .
+  - docker build -t "yupaits/go-pi-monitor" .
 
 deploy:
   provider: script

@@ -1,0 +1,9 @@
+language: go
+
+go:
+  - "1.11.x"
+  - "1.12.x"
+
+install:
+  - go mod tidy
+  - go build app/main.go

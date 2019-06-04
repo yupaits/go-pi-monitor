@@ -12,7 +12,7 @@ env:
 
 install:
   - go build app/main.go
-  - docker build -pull -t "yupaits/go-pi-monitor" .
+  - docker build --pull -t "yupaits/go-pi-monitor" .
 
 deploy:
   provider: script

@@ -1,5 +1,0 @@
-[http]
-port = "80"
-favicon = "./ui/dist/favicon.ico"
-static_path = "./ui/dist/static"
-html_path_pattern = "./ui/dist/*.html"

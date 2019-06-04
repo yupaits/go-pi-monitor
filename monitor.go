@@ -6,17 +6,13 @@ import (
 	"net/http"
 )
 
-var Config *AppConfig
-
 func Run() {
-	Config = initConfig()
-
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
-	r.Static("/static", Config.Http.StaticPath)
-	r.StaticFile("/favicon.ico", Config.Http.Favicon)
-	r.LoadHTMLGlob(Config.Http.HtmlPathPattern)
+	r.Static("/static", "./ui/dist/static")
+	r.StaticFile("/favicon.ico", "./ui/dist/favicon.ico")
+	r.LoadHTMLGlob("./ui/dist/*.html")
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
@@ -26,8 +22,8 @@ func Run() {
 	})
 	r.GET("/info", monitorInfoHandler)
 
-	log.Printf("monitor启动成功, 端口: %s", Config.Http.Port)
-	log.Fatal(r.Run(":" + Config.Http.Port))
+	log.Printf("monitor启动成功, 端口: %s", "80")
+	log.Fatal(r.Run(":80"))
 }
 
 func monitorInfoHandler(c *gin.Context) {

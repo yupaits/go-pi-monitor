@@ -6,7 +6,7 @@ ADD main /app/
 ADD ui/dist /app/ui/dist
 ADD config.toml /app/
 
-RUN ./sh/docker_build.sh
+RUN /bin/bash chmod +x /app/main
 
 EXPOSE 80
 ENTRYPOINT ["/app/main"]

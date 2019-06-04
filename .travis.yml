@@ -23,6 +23,6 @@ install:
 
 deploy:
   provider: script
-  script: bash sh/docker_push.sh
+  script: bash docker_push.sh
   on:
     branch: master

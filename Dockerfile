@@ -7,4 +7,4 @@ ADD ui/dist app/ui/dist
 ADD config.toml app/
 
 EXPOSE 80
-ENTRYPOINT ["/app/main"]
+CMD app/main

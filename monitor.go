@@ -12,7 +12,7 @@ func Run() {
 
 	r.Static("/static", "./ui/dist/static")
 	r.StaticFile("/favicon.ico", "./ui/dist/favicon.ico")
-	r.LoadHTMLGlob("ui/dist/*.html")
+	r.LoadHTMLGlob("./ui/dist/*.html")
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})

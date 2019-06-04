@@ -6,7 +6,8 @@ ADD main /app/
 ADD ui/dist /app/ui/dist
 ADD config.toml /app/
 
-RUN sudo chmod +x /app/main
+RUN apk add sudo \
+    && sudo chmod +x /app/main
 
 EXPOSE 80
 ENTRYPOINT ["/app/main"]

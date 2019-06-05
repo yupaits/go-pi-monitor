@@ -10,7 +10,7 @@ node_js:
 env:
   - GO111MODULE=on
 
-install:
+script:
   - CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build app/main.go
   - cd ui
   - npm install
